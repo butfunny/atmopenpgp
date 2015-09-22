@@ -1,7 +1,13 @@
 "use strict";
 
 var staticConfig = require('./atm-config.js');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/atm');
+
+
 require('./src/app.js').startServer(staticConfig);
+
 
 var addresses = [];
 eachLocalAddress(function(addr) {

@@ -70,6 +70,9 @@
                         ObjectUtil.clear(User);
                         $state.go("login");
                     })
+                },
+                checkEmailAvailable: function (email) {
+                    return $http.post("/api/security/check-email-available/"+email);
                 }
             };
         })

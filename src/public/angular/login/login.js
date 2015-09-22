@@ -32,11 +32,39 @@
         })
 
 
-        .directive("register", function() {
+        .directive("register", function(SecurityService) {
+
+            var emailAvailableCache = {};
+            var emailAvailableCheck = function(email) {
+                if (email == null) {
+                    return 2;
+                }
+
+                var status = emailAvailableCache[email];
+
+                if ( status == null ) {
+                    emailAvailableCache[email] = 2;
+
+                    SecurityService.checkEmailAvailable(email).then(function(value) {
+                        //console.log(value);
+                        emailAvailableCache[email] = value ? 1 : 0;
+                    });
+
+                    return 2;
+                } else {
+                    return status;
+                }
+
+            };
+
+
             return {
                 restrict: "E",
                 templateUrl: "angular/login/register.html",
                 link: function($scope, elem, attrs) {
+                    $scope.register = {};
+
+                    $scope.emailAvailable = emailAvailableCheck;
 
                 }
             };
