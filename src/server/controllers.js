@@ -8,5 +8,8 @@ module.exports = function (app, staticConfig) {
     app.use("/api", router);
 
 
+    require("./user-controller")(router);
+
+
 
 };
