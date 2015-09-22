@@ -1,0 +1,49 @@
+div .room-chat{
+    height: 600px;
+    overflow:auto;
+    scroll-behavior: auto;
+
+}
+
+body{
+    background-color:#fff4f9;
+}
+
+head{
+    opacity: 0.6;
+}
+
+div .chat-label{
+    height: 700px;
+    width: 320px;
+    margin-left: 15px;
+}
+
+div .chat-area{
+    border: 2px solid #8AC007;
+    padding: 20px;
+    height: 500px;
+    margin-left: 5px;
+    overflow:auto;
+    scroll-behavior: auto;
+}
+
+div .online-people{
+    height: 660px;
+    overflow:auto;
+    scroll-behavior: auto;
+}
+
+
+div .caro-table{
+    border: 2px solid #8AC007;
+    padding: 20px;
+    height: 700px;
+}
+
+
+
+
+.win{
+    background-color:#fbcab3;
+}
