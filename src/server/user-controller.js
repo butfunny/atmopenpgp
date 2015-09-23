@@ -14,6 +14,7 @@ module.exports = function (router) {
     router.post("/security/register", function (req, res) {
 
         Users.create(req.body, function (err, user) {
+            console.log(req.body);
             res.json(user);
         })
     });
@@ -21,13 +22,11 @@ module.exports = function (router) {
 
     router.post("/security/check-email-available/:email", function (req, res) {
 
-        console.log(req.params.email);
         Users.find({email: req.params.email}, function (err, user) {
-            console.log(err);
             if(user.length > 0) {
-                res.json({error: true});
+                res.json({value: false});
             } else {
-                res.json({error: false});
+                res.json({value: true});
             }
         })
 

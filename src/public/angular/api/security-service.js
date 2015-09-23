@@ -73,6 +73,9 @@
                 },
                 checkEmailAvailable: function (email) {
                     return $http.post("/api/security/check-email-available/"+email);
+                },
+                register: function (user) {
+                    return $http.post("/api/security/register", user);
                 }
             };
         })

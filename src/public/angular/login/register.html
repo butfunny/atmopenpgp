@@ -1,16 +1,17 @@
 <div>
-    <h3>Đăng ký {{emailAvailable(register.email)}}</h3>
+    <h3>Đăng ký</h3>
 </div>
 <div>
-    <form>
-        <div class="form-group text-center has-feedback">
+    <form name="dangKy">
+        <div class="form-group text-center" ng-class="(emailAvailable(register.email) == 1) ? 'has-success' : ''">
+            <p class="control-label pull-left" style="color:#ff001b " ng-show="emailAvailable(register.email) == 0">Email đã có người sử dụng</p>
             <input type="email" class="form-control" placeholder="Email" ng-model="register.email" required>
         </div>
         <div class="form-group text-center has-feedback">
-            <input type="email" class="form-control" placeholder="Tên người dùng" >
+            <input  class="form-control" placeholder="Tên người dùng" required ng-model="register.name">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Mật khẩu">
+            <input type="password" class="form-control" placeholder="Mật khẩu" required ng-model="register.pass">
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="Nhập lại mật khẩu">
@@ -20,7 +21,7 @@
 
             </div>
             <div class="col-xs-5">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng ký</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="dangky()" ng-disabled="!dangKy.$valid || emailAvailable(register.email) == 0">Đăng ký</button>
             </div>
         </div>
     </form>

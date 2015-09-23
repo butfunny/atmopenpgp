@@ -45,9 +45,8 @@
                 if ( status == null ) {
                     emailAvailableCache[email] = 2;
 
-                    SecurityService.checkEmailAvailable(email).then(function(value) {
-                        //console.log(value);
-                        emailAvailableCache[email] = value ? 1 : 0;
+                    SecurityService.checkEmailAvailable(email).then(function(resp) {
+                        emailAvailableCache[email] = resp.data.value ? 1 : 0;
                     });
 
                     return 2;
@@ -65,6 +64,12 @@
                     $scope.register = {};
 
                     $scope.emailAvailable = emailAvailableCheck;
+
+                    $scope.dangky = function () {
+                        SecurityService.register($scope.register).then(function (resp) {
+                            console.log(resp.data);
+                        })
+                    }
 
                 }
             };
