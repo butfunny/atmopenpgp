@@ -11,37 +11,37 @@
             };
         })
 
-        //.run(function(SecurityService, User, $rootScope) {
-        //    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-        //        if (!User.isLogged) {
-        //            if (toState.name == "login") {
-        //                ;
-        //            } else {
-        //                event.preventDefault();
-        //            }
-        //        }
-        //    });
-        //
-        //
-        //
-        //})
+        .run(function(SecurityService, User, $rootScope) {
+            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+                if (!User.isLogged) {
+                    if (toState.name == "login") {
+                        ;
+                    } else {
+                        event.preventDefault();
+                    }
+                }
+            });
+
+
+
+        })
 
         .factory("SecurityService", function(User,$http,$state, $q) {
 
-            //function fetchUser(){
-            //    return $http.get("/api/account").success(function(data){
-            //        if(data == ""){
-            //            ObjectUtil.clear(User);
-            //            $state.go("login");
-            //        }else{
-            //            User.isLogged = true;
-            //            User.name = data.name;
-            //            $state.go("ma-hoa");
-            //        }
-            //    })
-            //
-            //}
-            //fetchUser();
+            function fetchUser(){
+                return $http.get("/api/security/account").success(function(data){
+                    if(data == ""){
+                        ObjectUtil.clear(User);
+                        $state.go("login");
+                    }else{
+                        User.isLogged = true;
+                        User.info = data;
+                        $state.go("ma-hoa");
+                    }
+                })
+
+            }
+            fetchUser();
 
 
 
@@ -57,7 +57,7 @@
                             defer.reject();
                         }else{
                             User.isLogged = true;
-                            User.info = data.info;
+                            User.info = data;
                             defer.resolve();
 
                         }

@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/atm');
 
 
+
 require('./src/app.js').startServer(staticConfig);
 
 

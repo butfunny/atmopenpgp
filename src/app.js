@@ -4,7 +4,6 @@ module.exports = {
         var express = require('express');
         var app = express();
         var bodyParser = require('body-parser');
-        var openpgp = require('openpgp');
 
         var open = require('open');
         var http = require('http').Server(app);

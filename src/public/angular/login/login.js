@@ -17,12 +17,12 @@
             ;
         }])
 
-        .controller("login.ctrl", function($scope, SecurityService) {
+        .controller("login.ctrl", function($scope, SecurityService, $state) {
             $scope.user = {};
 
             $scope.login = function () {
                 SecurityService.login($scope.user).then(function() {
-                    console.log("Success!!");
+                    $state.go("ma-hoa");
                 }, function() {
                     console.log("error!!");
                 })

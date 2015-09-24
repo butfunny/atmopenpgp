@@ -9,6 +9,7 @@ module.exports = function (app, staticConfig) {
 
 
     require("./user-controller")(router);
+    require("./key-pair-controller")(router, staticConfig);
 
 
 
