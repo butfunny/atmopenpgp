@@ -1,7 +1,6 @@
 var express = require("express");
 
 var router = express.Router();
-var mongoose = require('mongoose');
 
 
 module.exports = function (app, staticConfig) {
@@ -10,6 +9,7 @@ module.exports = function (app, staticConfig) {
 
     require("./user-controller")(router);
     require("./key-pair-controller")(router, staticConfig);
+    require("./ma-hoa-controller")(router);
 
 
 

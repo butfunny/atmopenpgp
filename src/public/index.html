@@ -29,18 +29,21 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" atm-header>
             <ul class="nav navbar-nav" ng-show="User.isLogged">
                 <li ng-class="{active: $state.current.name == 'ma-hoa'}">
-                    <a ui-sref="thay-tu-va-ten-cuop" href="">Mã hóa và gửi thông điệp</a>
+                    <a ui-sref="ma-hoa" href="">Mã hóa và gửi thông điệp</a>
                 </li>
 
                 <li ng-class="{active: $state.current.name == 'giai-ma'}">
-                    <a ui-sref="thay-tu-va-ten-cuop" href="">Giải mã thông điệp</a>
+                    <a ui-sref="giai-ma" href="">Giải mã thông điệp</a>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" ng-show="User.isLogged">
 
                 <li>
-                    <a>Xin chào: <b>{{User.info.name}}</b></a>
+                    <a href="">Xin chào: <b>{{User.info.name}}</b></a>
+                </li>
+                <li ng-class="{active: $state.current.name == 'thong-tin-ca-nhan'}">
+                    <a href="" ui-sref="thong-tin-ca-nhan">Thông tin cá nhân</a>
                 </li>
                 <li ng-click="logout()">
                     <a href="">Logout <i class="fa fa-sign-out"></i></a>
@@ -66,15 +69,22 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/common-utils.js"></script>
     <script src="assets/js/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="assets/js/angular-animate.js"></script>
+
 
     <!-- inject:js -->
     <script src="/angular/app.js"></script>
     <script src="/angular/api/key-pair-api.js"></script>
+    <script src="/angular/api/ma-hoa-api.js"></script>
     <script src="/angular/api/security-service.js"></script>
+    <script src="/angular/api/user-api.js"></script>
     <script src="/angular/create-key/create-key.js"></script>
-    <script src="/angular/lay-out/lay-out.js"></script>
+    <script src="/angular/giai-ma/giai-ma.js"></script>
     <script src="/angular/login/login.js"></script>
+    <script src="/angular/lay-out/lay-out.js"></script>
     <script src="/angular/ma-hoa/ma-hoa.js"></script>
+    <script src="/angular/nhap-passphrase/nhap-passphrase.js"></script>
+    <script src="/angular/thong-tin-ca-nhan/thong-tin-ca-nhan.js"></script>
     <!-- endinject -->
 
 </html>

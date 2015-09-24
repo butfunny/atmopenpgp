@@ -5,6 +5,8 @@ module.exports = {
         var app = express();
         var bodyParser = require('body-parser');
 
+        //var openpgp = require('openpgp');
+
         var open = require('open');
         var http = require('http').Server(app);
         var cookieParser = require('cookie-parser');
@@ -18,8 +20,19 @@ module.exports = {
 
         app.use(express.static(__dirname+ "/public"));
 
+        //var fs = require('fs');
+        //fs.readFile('./test.txt','utf8', function (err, data) {
+        //    var message = data;
+        //    fs.readFile('./key-user/5602a8defee13d6c0de141d3_publicKey.txt','utf8', function (err, pubkey) {
+        //        var publicKeys = openpgp.key.readArmored(pubkey);
+        //        var pubKey = publicKeys.keys[0];
+        //        openpgp.verifyClearSignedMessage([pubKey], openpgp.cleartext.readArmored(message)).then(function(verify) {
+        //            console.log(verify);
+        //        });
+        //    })
+        //});
 
-       //openpgp.generateKeyPair(
+        //openpgp.generateKeyPair(
        //     {
        //         numBits: 1024,
        //         userId: "Jon Smith <jon.smith@example.org>",

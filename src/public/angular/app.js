@@ -6,11 +6,17 @@
         'atm.login',
         'atm.ma-hoa',
         'atm.crate-key',
+        'atm.thong-tin-ca-nhan',
+        'atm.giai-ma',
+
 
         'atm.lay-out',
+        'atm.nhap-passphrase',
 
         'atm.security',
-        'atm.key-pair-api'
+        'atm.key-pair-api',
+        'atm.user-api',
+        'atm.ma-hoa-api'
     ])
 
     ;

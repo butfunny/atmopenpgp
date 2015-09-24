@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Mời nhập passphrase</h4>
+</div>
+<div class="modal-body">
+    <p style="color: #ff0b0e" ng-show="gotError"> Sai passphrase mời nhập lại</p>
+    <input class="form-control" type="password" ng-model="passphrase">
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Ok</button>
+    <button class="btn btn-default" ng-click="cancel()" >Thôi</button>
+
+</div>

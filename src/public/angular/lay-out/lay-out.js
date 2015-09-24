@@ -4,6 +4,12 @@
 
     angular.module('atm.lay-out', [
     ])
+
+        .run(["$rootScope", "$state", "$stateParams", function ($rootScope, $state, $stateParams) {
+            $rootScope.$state = $state;
+            $rootScope.$stateParams = $stateParams;
+        }])
+
         .directive("atmHeader", function(User,SecurityService) {
             return {
                 restrict: "A",

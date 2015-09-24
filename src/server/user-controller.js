@@ -47,4 +47,11 @@ module.exports = function (router) {
         req.session.destroy();
         res.end();
     });
+
+
+    router.get("/user/all-user", function (req, res) {
+        Users.find({}, "email name",function (err, users) {
+            res.json(users);
+        })
+    })
 };
