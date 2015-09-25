@@ -5,7 +5,17 @@ module.exports = {
         var app = express();
         var bodyParser = require('body-parser');
 
-        //var openpgp = require('openpgp');
+        var nodemailer = require('nodemailer');
+        console.log(staticConfig.email.user);
+        console.log(staticConfig.email.pass);
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: staticConfig.email.user,
+                pass: staticConfig.email.pass
+            }
+        });
+
 
         var open = require('open');
         var http = require('http').Server(app);
@@ -61,7 +71,7 @@ module.exports = {
 
 
 
-        require("./server/controllers.js")(app, staticConfig);
+        require("./server/controllers.js")(app, staticConfig, transporter);
 
         var port = staticConfig["port"];
 

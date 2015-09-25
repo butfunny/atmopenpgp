@@ -2,7 +2,6 @@ var Users = require('../common/dao/users-dao');
 var KeyPair = require('../common/dao/key-pair-dao');
 var openpgp = require('openpgp');
 var fs = require('fs');
-var LineByLineReader = require('line-by-line');
 
 module.exports = function (router, staticConfig) {
 

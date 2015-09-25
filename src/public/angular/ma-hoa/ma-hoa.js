@@ -41,6 +41,7 @@
 
             $scope.sendMessage = function () {
                 $scope.message.user_revice_id = $scope.user_selected._id;
+                $scope.message.user_revice_email = $scope.user_selected.email;
                 maHoaApi.sendMessage($scope.message).then(function (resp){
                     $scope.message.text = "";
                 })
