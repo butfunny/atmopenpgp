@@ -30,8 +30,8 @@
 
 
             $scope.viewPrivateKey = function () {
-                passPhraseModal.show().then(function (privateKey) {
-                    $scope.privateKey = privateKey.privateKey;
+                passPhraseModal.show().then(function (data) {
+                    $scope.privateKey = data.privateKey.privateKey;
                 })
             }
 

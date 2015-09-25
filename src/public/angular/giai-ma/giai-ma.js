@@ -17,7 +17,7 @@
             ;
         }])
 
-        .controller("giai-ma.ctrl", function($scope, User, userApi, keyPairApi, giaiMaApi) {
+        .controller("giai-ma.ctrl", function($scope, User, userApi, keyPairApi, giaiMaApi, passPhraseModal) {
 
             $scope.User = User;
             $scope.$watch("User", function(value) {
@@ -50,7 +50,23 @@
 
             $scope.reWrite = function () {
                 $scope.validSign = false;
-            }
+            };
+
+            $scope.messageDecrypted = false;
+
+            $scope.checkMessage = function () {
+                passPhraseModal.show().then(function (data) {
+                    var info = {
+                        passphrase: data.passphrase,
+                        pgpMessage: $scope.pgpMessage
+                    };
+
+                    giaiMaApi.getPlaintext(info).then(function (resp) {
+                        $scope.plantText = resp.data.message;
+                        $scope.messageDecrypted = true;
+                    });
+                })
+            };
 
         })
 

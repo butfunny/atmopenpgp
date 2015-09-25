@@ -1,5 +1,6 @@
 var fs = require('fs');
 var openpgp = require('openpgp');
+var KeyPair = require('../common/dao/key-pair-dao');
 var StringDecoder = require('string_decoder').StringDecoder;
 
 module.exports = function (router) {
@@ -13,6 +14,28 @@ module.exports = function (router) {
                 res.send(verify);
             });
         })
+
+    });
+
+
+    router.post("/giai-ma/message", function (req, res) {
+
+        fs.readFile('./key-user/'+req.session.info._id+'_privateKey.txt','utf8', function (err, key) {
+            var key = key;
+            var privateKey = openpgp.key.readArmored(key).keys[0];
+            privateKey.decrypt(req.body.passphrase);
+
+            var pgpMessage = req.body.pgpMessage;
+            pgpMessage = openpgp.message.readArmored(pgpMessage);
+
+            openpgp.decryptMessage(privateKey, pgpMessage).then(function(plaintext) {
+                res.json({message: plaintext});
+            }).catch(function(error) {
+                // failure
+            });
+        });
+
+
 
     })
 };

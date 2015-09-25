@@ -6,8 +6,6 @@ module.exports = {
         var bodyParser = require('body-parser');
 
         var nodemailer = require('nodemailer');
-        console.log(staticConfig.email.user);
-        console.log(staticConfig.email.pass);
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {

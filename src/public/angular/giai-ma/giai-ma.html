@@ -8,9 +8,15 @@
     <p ng-show="validSign == true">Kiểm tra chữ ký thành công: <strong>{{textOfSign}}</strong></p>
     <p ng-show="validSign == null" style="color: #ff0115">Chữ ký không đúng  <button class="btn btn-warning" ng-click="reWrite()">Nhập lại</button></p>
 
-    <div class="row" style="margin-top: 20px">
+    <div class="row" style="margin-top: 20px" ng-show="messageDecrypted == false">
         <textarea class="form-control" placeholder="Nhập nội dung thư" style="resize: none; height: 200px" ng-model="pgpMessage"></textarea>
-        <button class="btn btn-success" style="margin-top: 20px">Giải mã</button>
+        <button class="btn btn-success" style="margin-top: 20px" ng-click="checkMessage()">Giải mã</button>
     </div>
+
+
+    <p ng-show="messageDecrypted == true" style="margin-top: 40px; font-size: 20px">Thông điệp sau khi giải mã là:
+        <br>
+        <strong>{{plantText}}</strong>
+    </p>
 
 </div>

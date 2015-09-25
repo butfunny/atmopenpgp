@@ -8,6 +8,9 @@
             return {
                 checkSign: function (sign) {
                     return $http.post("/api/giai-ma/sign", sign);
+                },
+                getPlaintext: function (info) {
+                    return $http.post("/api/giai-ma/message", info);
                 }
             };
         })

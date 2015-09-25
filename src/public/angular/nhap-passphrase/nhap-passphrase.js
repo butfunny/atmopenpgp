@@ -24,7 +24,7 @@
                     if (resp.data.error) {
                         $scope.gotError = true;
                     } else {
-                        $modalInstance.close(resp.data);
+                        $modalInstance.close({privateKey : resp.data, passphrase: $scope.passphrase});
                     }
                 });
             };
