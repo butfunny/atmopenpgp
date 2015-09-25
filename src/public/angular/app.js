@@ -16,7 +16,8 @@
         'atm.security',
         'atm.key-pair-api',
         'atm.user-api',
-        'atm.ma-hoa-api'
+        'atm.ma-hoa-api',
+        'atm.giai-ma-api'
     ])
 
     ;

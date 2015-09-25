@@ -1,12 +1,15 @@
 <div class="container" style="margin-top: 40px">
-    <div class="row">
-        <input class="form-control" placeholder="Tìm kiếm người mà bạn cho là gửi thư tới bạn" style="margin-bottom: 20px">
-        <textarea class="form-control" placeholder="Nhập nội dung chữ ký người gửi" style="resize: none; height: 100px"></textarea>
-        <button class="btn btn-success" style="margin-top: 20px"> Kiểm tra chữ ký</button>
+    <div class="row" ng-show="validSign == false">
+        <input class="form-control" placeholder="Tìm kiếm người mà bạn cho là gửi thư tới bạn" style="margin-bottom: 20px" ng-model="user_selected" typeahead="user as user.email for user in users | filter:$viewValue | limitTo:10">
+        <textarea class="form-control" placeholder="Nhập nội dung chữ ký người gửi" style="resize: none; height: 100px" ng-model="signMessage"></textarea>
+        <button class="btn btn-success" style="margin-top: 20px" ng-click="checkSign()"> Kiểm tra chữ ký</button>
     </div>
 
+    <p ng-show="validSign == true">Kiểm tra chữ ký thành công: <strong>{{textOfSign}}</strong></p>
+    <p ng-show="validSign == null" style="color: #ff0115">Chữ ký không đúng  <button class="btn btn-warning" ng-click="reWrite()">Nhập lại</button></p>
+
     <div class="row" style="margin-top: 20px">
-        <textarea class="form-control" placeholder="Nhập nội dung thư" style="resize: none; height: 200px"></textarea>
+        <textarea class="form-control" placeholder="Nhập nội dung thư" style="resize: none; height: 200px" ng-model="pgpMessage"></textarea>
         <button class="btn btn-success" style="margin-top: 20px">Giải mã</button>
     </div>
 

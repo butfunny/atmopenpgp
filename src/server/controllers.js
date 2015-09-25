@@ -10,6 +10,7 @@ module.exports = function (app, staticConfig, transporter) {
     require("./user-controller")(router);
     require("./key-pair-controller")(router, staticConfig);
     require("./ma-hoa-controller")(router, staticConfig, transporter);
+    require("./giai-ma-controller")(router);
 
 
 

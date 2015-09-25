@@ -1,5 +1,5 @@
 var fs = require('fs');
-
+var openpgp = require('openpgp');
 
 module.exports = function (router, staticConfig, transporter) {
 
@@ -10,28 +10,33 @@ module.exports = function (router, staticConfig, transporter) {
 
         fs.readFile('./key-user/'+req.body.user_revice_id+'_publicKey.txt','utf8', function (err, data) {
             if (err) throw err;
-            publicKey =  data;
-            fs.readFile('./key-user/'+req.session.info._id+'_signKey.txt','utf8', function (err, data) {
-                if (err) throw err;
-                signOfUser =  data;
-                var message = signOfUser.concat(publicKey);
+            publicKey =  openpgp.key.readArmored(data);
+            openpgp.encryptMessage(publicKey.keys, req.body.text).then(function(pgpMessage) {
 
-                var mailOptions = {
-                    from: req.session.info.email ,
-                    to : "shi.iluka94@gmail.com", // list of receivers
-                    subject: '', // Subject line
-                    html: '<b>This message sended by '+req.session.info.name + '(' + req.session.info.email + ') </b> <p>' + signOfUser + '</p> <br>' + publicKey // html body
-                };
+                fs.readFile('./key-user/'+req.session.info._id+'_signKey.txt','utf8', function (err, data) {
+                    if (err) throw err;
+                    signOfUser =  data;
 
-                transporter.sendMail(mailOptions, function(error, info){
-                    if(error){
-                        console.log(error);
-                    }else{
-                        res.send('Message sent: ' + info.response);
-                    }
+                    var mailOptions = {
+                        from: req.session.info.email ,
+                        to : req.body.user_revice_email, // list of receivers
+                        subject: '',
+                        text: 'This message sended by '+req.session.info.name + '(' + req.session.info.email + ') ' + signOfUser + pgpMessage// Subject line
+                    };
+
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if(error){
+                            console.log(error);
+                        }else{
+                            res.send('Message sent: ' + info.response);
+                        }
+                    });
+
                 });
-
+            }).catch(function(error) {
+                // failure
             });
+
 
         });
 
