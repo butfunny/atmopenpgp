@@ -1,9 +1,10 @@
 var Users = require('../common/dao/users-dao');
+var crypto = require('crypto');
 
 module.exports = function (router) {
     router.post("/security/login", function (req, res) {
 
-        Users.findOne({email : req.body.email, pass: req.body.pass},"email name", function (err, user) {
+        Users.findOne({email : req.body.email, pass: crypto.createHash('md5').update(req.body.pass).digest("hex")},"email name", function (err, user) {
             if (user != null) {
                 req.session.info = user;
                 req.session.save();
