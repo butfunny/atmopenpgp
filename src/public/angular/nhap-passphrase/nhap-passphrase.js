@@ -20,11 +20,11 @@
         .controller("nhap-passphrase.ctrl", function($scope, $modalInstance, keyPairApi) {
 
             $scope.ok = function () {
-                keyPairApi.getPrivateKey($scope.passphrase).then(function (resp) {
+                keyPairApi.checkPassphrase($scope.passphrase).then(function (resp) {
                     if (resp.data.error) {
                         $scope.gotError = true;
                     } else {
-                        $modalInstance.close({privateKey : resp.data, passphrase: $scope.passphrase});
+                        $modalInstance.close($scope.passphrase);
                     }
                 });
             };

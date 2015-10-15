@@ -14,6 +14,9 @@
                 },
                 downloadPublicKey: function (user_id) {
                     return $http.get("/api/key-pair/publicKey/" + user_id);
+                },
+                checkPassphrase: function (passphrase) {
+                    return $http.get("/api/key-pair/passphrase/" + passphrase)
                 }
 
             };

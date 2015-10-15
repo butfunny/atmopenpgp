@@ -21,6 +21,44 @@
             };
         })
 
+        .factory("atmAlert", function () {
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            return {
+                showAlert: function (type, message) {
+                    toastr[type](message);
+                },
+                success: function (message) {
+                    toastr["success"](message);
+                },
+                error: function (message) {
+                    toastr["error"](message);
+                },
+                info: function (message) {
+                    toastr["info"](message);
+                },
+                warning: function (message) {
+                    toastr["warning"](message);
+                }
+            };
+        })
 
         .factory("DownloadService", function() {
             var base64=function(str){
@@ -38,7 +76,9 @@
                     document.body.removeChild(a);
                 }
             };
-        })
+        });
+
+
     ;
 
 })();

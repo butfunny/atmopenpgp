@@ -28,9 +28,6 @@
                             $scope.haveKeyPair = false;
                         } else {
                             $scope.haveKeyPair = true;
-                            keyPairApi.getPublicKey($scope.User.info._id).then(function (resp) {
-                                $scope.publicKey = resp.data.publicKey;
-                            })
                         }
                     });
 
