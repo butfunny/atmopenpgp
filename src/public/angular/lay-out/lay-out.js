@@ -20,6 +20,25 @@
                 }
             };
         })
+
+
+        .factory("DownloadService", function() {
+            var base64=function(str){
+                return window.btoa(unescape(encodeURIComponent(str)));
+            };
+
+            return {
+                download: function(downloadData) {
+                    var a = document.createElement('a');
+                    a.download = "key.txt";
+                    var href = "data:text/plain;base64," + base64(downloadData);
+                    a.href = href;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            };
+        })
     ;
 
 })();
