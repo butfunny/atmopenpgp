@@ -3,9 +3,14 @@
     <div class="col-md-3"></div>
     <div class="col-md-7">
         <h4>Bạn chưa có Private key và Public Key mời nhập passphrase tại đây.</h4>
-        <input type="password" class="form-control" placeholder="Passphrase" style="margin-top: 20px" ng-model="passphrase">
-        <input type="password" class="form-control" placeholder="Nhập lại" style="margin-top: 20px">
-        <button class="btn btn-primary" style="margin-top: 20px" ng-click="createKey()"> Xác Nhận</button>
+        <form name="formPassPhrase">
+            <label style="color: red;" ng-if="!formPassPhrase.rePassphrase.$valid">Nhập lại passphrase chưa chính xác!</label>
+            <input type="password" class="form-control" placeholder="Passphrase" style="margin-top: 20px" ng-model="passphrase">
+            <input type="password" class="form-control" placeholder="Nhập lại" name="rePassphrase" style="margin-top: 20px" ng-model="rePassphrase" check-same="passphrase">
+            <button class="btn btn-primary" style="margin-top: 20px" ng-click="createKey()" ng-disabled="!formPassPhrase.$valid || !rePassphrase"> Xác Nhận</button>
+            <a ng-href="{{User.info._id}}_privateKey.key">aaa</a>
+        </form>
+
     </div>
 
 </div>

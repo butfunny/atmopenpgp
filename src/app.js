@@ -27,45 +27,7 @@ module.exports = {
 
 
         app.use(express.static(__dirname+ "/public"));
-
-        //var fs = require('fs');
-        //fs.readFile('./test.txt','utf8', function (err, data) {
-        //    var message = data;
-        //    fs.readFile('./key-user/5602a8defee13d6c0de141d3_publicKey.txt','utf8', function (err, pubkey) {
-        //        var publicKeys = openpgp.key.readArmored(pubkey);
-        //        var pubKey = publicKeys.keys[0];
-        //        openpgp.verifyClearSignedMessage([pubKey], openpgp.cleartext.readArmored(message)).then(function(verify) {
-        //            console.log(verify);
-        //        });
-        //    })
-        //});
-
-        //openpgp.generateKeyPair(
-       //     {
-       //         numBits: 1024,
-       //         userId: "Jon Smith <jon.smith@example.org>",
-       //         passphrase: "123123"
-       //     }
-       //
-       // ).then(function(keypair) {
-       //        var privKeys = openpgp.key.readArmored(keypair.privateKeyArmored);
-       //        var publicKeys = openpgp.key.readArmored(keypair.publicKeyArmored);
-       //        var privKey = privKeys.keys[0];
-       //        var pubKey = publicKeys.keys[0];
-       //        privKey.decrypt("123123");
-       //        var clearSignedArmor = openpgp.signClearMessage(privKey,"Day la chu ky cua anh").then(function (clearSignedArmor) {
-       //            console.log(clearSignedArmor);
-       //            openpgp.cleartext.readArmored(clearSignedArmor + "123123");
-       //            openpgp.verifyClearSignedMessage([pubKey], openpgp.cleartext.readArmored(clearSignedArmor)).then(function(verify) {
-       //                console.log(verify);
-       //            });
-       //        });
-       //
-       //    }
-       //);
-
-
-
+        app.use(express.static(__dirname+ "/../key-user"));
 
 
 

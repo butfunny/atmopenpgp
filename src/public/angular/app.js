@@ -12,6 +12,7 @@
 
         'atm.lay-out',
         'atm.nhap-passphrase',
+        'atm.theme',
 
         'atm.security',
         'atm.key-pair-api',

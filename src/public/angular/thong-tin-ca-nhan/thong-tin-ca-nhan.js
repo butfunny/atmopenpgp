@@ -22,9 +22,18 @@
             $scope.User = User;
             $scope.$watch("User", function(value) {
                 if (value) {
-                    keyPairApi.getPublicKey($scope.User.info._id).then(function (resp) {
-                        $scope.publicKey = resp.data.publicKey;
-                    })
+
+                    keyPairApi.getKeyPair(User.info._id).then(function (resp) {
+                        if (resp.data == "") {
+                            $scope.haveKeyPair = false;
+                        } else {
+                            $scope.haveKeyPair = true;
+                            keyPairApi.getPublicKey($scope.User.info._id).then(function (resp) {
+                                $scope.publicKey = resp.data.publicKey;
+                            })
+                        }
+                    });
+
                 }
             });
 

@@ -4,7 +4,9 @@
     Name: <strong>{{User.info.name}}</strong> <br>
     </p>
 
-    <div class="row">
+    <strong>Bạn chưa có passphrase, mời nhấn vào <a ui-sref="create-key"> đây</a> để tiến hành tạo key</strong>
+
+    <div class="row" ng-show="haveKeyPair">
         <div class="col-md-6">
             <h4>Public Key</h4>
 
