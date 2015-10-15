@@ -28,10 +28,10 @@
             };
 
             return {
-                download: function(downloadData) {
+                download: function(downloadData, type) {
                     var a = document.createElement('a');
-                    a.download = "key.txt";
-                    var href = "data:text/plain;base64," + base64(downloadData);
+                    a.download = type;
+                    var href = "data:application/octet-stream;base64," + base64(downloadData);
                     a.href = href;
                     document.body.appendChild(a);
                     a.click();

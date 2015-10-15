@@ -4,28 +4,13 @@
     Name: <strong>{{User.info.name}}</strong> <br>
     </p>
 
-    <strong>Bạn chưa có passphrase, mời nhấn vào <a ui-sref="create-key"> đây</a> để tiến hành tạo key</strong>
+    <strong ng-show="!haveKeyPair">Bạn chưa có passphrase, mời nhấn vào <a ui-sref="create-key"> đây</a> để tiến hành tạo key</strong>
 
     <div class="row" ng-show="haveKeyPair">
         <div class="col-md-6">
-            <h4>Public Key</h4>
-
-            <textarea class="form-control" style="resize: none; height: 400px" readonly>
-                {{publicKey}}
-            </textarea>
+            <button class="btn btn-primary" ng-click="downloadKey()"> Tải về Public Key</button>
         </div>
 
-        <div class="col-md-6">
-            <h4>
-                 Private Key
-                <button class="btn btn-primary" ng-click="viewPrivateKey()" ng-show="!privateKey"> Xem </button>
-            </h4>
-
-
-            <textarea class="form-control" style="resize: none;  height: 400px" readonly ng-show="privateKey">
-                {{privateKey}}
-            </textarea>
-        </div>
     </div>
 
 </div>

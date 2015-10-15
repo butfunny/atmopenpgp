@@ -35,7 +35,7 @@ module.exports = function (router, staticConfig) {
 
                 openpgp.signClearMessage(privKeys.keys[0],"Sign by: " + req.session.info.name + " <"+ req.session.info.email +">").then(function (clearSignedArmor) {
 
-                    fs.writeFile("./key-user/"+req.session.info._id+"_signKey.txt",clearSignedArmor, function(err) {
+                    fs.writeFile("./key-user/"+req.session.info._id+"_signKey.sig",clearSignedArmor, function(err) {
                         if(err) {
                             return console.log(err);
                         }
@@ -44,7 +44,7 @@ module.exports = function (router, staticConfig) {
                     var key = {
                         user_id: req.session.info._id,
                         passphrase: crypto.createHash('md5').update(req.params.passpharese).digest("hex"),
-                        publicKey: req.session.info._id+"_publicKey.txt"
+                        created: true
                     };
                     KeyPair.create(key, function (err, keyCreated) {
                         fs.writeFile("./key-user/"+req.session.info._id+"_publicKey.csr", keyPair.publicKeyArmored, function(err) {
@@ -55,7 +55,9 @@ module.exports = function (router, staticConfig) {
 
                         fs.writeFile("./key-user/"+req.session.info._id+"_privateKey.key", keyPair.privateKeyArmored, function(err) {
                             var file = __dirname + "../../../key-user/"+req.session.info._id+"_privateKey.key";
-                            res.download(file,req.session.info._id+"_privateKey.key" );
+                            res.download(file,req.session.info._id+"_privateKey.key", function () {
+                                fs.unlinkSync(file);
+                            } );
 
                         });
 
@@ -69,13 +71,8 @@ module.exports = function (router, staticConfig) {
 
 
     router.get("/key-pair/publicKey/:uid", function (req, res) {
-
-
-        fs.readFile('./key-user/'+req.params.uid+'_publicKey.txt','utf8', function (err, data) {
-            if (err) throw err;
-            res.json({publicKey: data});
-
-        });
+        var file = __dirname + "../../../key-user/"+req.params.uid+"_publicKey.csr";
+        res.download(file,req.session.info._id+"_privateKey.csr");
 
     });
 

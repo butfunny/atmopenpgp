@@ -22,6 +22,7 @@ gulp.task('install-db', function () {
         ], function (err, user) {
             KeyPair.remove().exec();
             console.log("Created 2 user");
+            db.connection.close();
         })
     });
 

@@ -8,7 +8,6 @@
             <input type="password" class="form-control" placeholder="Passphrase" style="margin-top: 20px" ng-model="passphrase">
             <input type="password" class="form-control" placeholder="Nhập lại" name="rePassphrase" style="margin-top: 20px" ng-model="rePassphrase" check-same="passphrase">
             <button class="btn btn-primary" style="margin-top: 20px" ng-click="createKey()" ng-disabled="!formPassPhrase.$valid || !rePassphrase"> Xác Nhận</button>
-            <a ng-href="{{User.info._id}}_privateKey.key">aaa</a>
         </form>
 
     </div>

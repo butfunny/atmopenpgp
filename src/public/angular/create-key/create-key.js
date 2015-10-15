@@ -17,14 +17,13 @@
             ;
         }])
 
-        .controller("create-key.ctrl", function($scope, $state, keyPairApi, $http, User) {
+        .controller("create-key.ctrl", function($scope, $state, keyPairApi, User, DownloadService) {
 
             $scope.User = User;
             $scope.createKey = function () {
-                //$http.get(User.info._id + '_privateKey.key');
 
                 keyPairApi.createKeyPair($scope.passphrase).then(function (resp) {
-                    //$http.get(User.info._id + '_privateKey.key');
+                    DownloadService.download(resp.data, "privateKey.key");
                 })
             }
 

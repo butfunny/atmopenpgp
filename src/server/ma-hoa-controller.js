@@ -19,9 +19,9 @@ module.exports = function (router, staticConfig, transporter) {
 
                     var mailOptions = {
                         from: req.session.info.email ,
-                        to : req.body.user_revice_email, // list of receivers
+                        to : req.body.user_revice_email,
                         subject: '',
-                        text: 'This message sended by '+req.session.info.name + '(' + req.session.info.email + ') ' + signOfUser + pgpMessage// Subject line
+                        text: 'This message sended by '+req.session.info.name + '(' + req.session.info.email + ') ' + signOfUser + pgpMessage
                     };
 
                     transporter.sendMail(mailOptions, function(error, info){

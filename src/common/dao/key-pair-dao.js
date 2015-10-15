@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('KeyPair', {
     user_id: String,
-    publicKey: String,
-    privateKey: String,
+    created: Boolean,
     passphrase: String
 }, "key_pair");

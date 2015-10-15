@@ -12,12 +12,10 @@
                 createKeyPair: function (passphrase) {
                     return $http.post("/api/key-pair/create/" + passphrase);
                 },
-                getPublicKey: function (user_id) {
+                downloadPublicKey: function (user_id) {
                     return $http.get("/api/key-pair/publicKey/" + user_id);
-                },
-                getPrivateKey: function (passPhrase) {
-                    return $http.get("/api/key-pair/privateKey/" + passPhrase);
                 }
+
             };
         })
     ;

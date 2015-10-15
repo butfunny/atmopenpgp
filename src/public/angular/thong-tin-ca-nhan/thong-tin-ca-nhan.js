@@ -17,10 +17,10 @@
             ;
         }])
 
-        .controller("thong-tin-ca-nhan.ctrl", function($scope, User, keyPairApi, passPhraseModal) {
+        .controller("thong-tin-ca-nhan.ctrl", function($scope, User, keyPairApi, DownloadService) {
 
             $scope.User = User;
-            $scope.$watch("User", function(value) {
+            $scope.$watch("::User", function(value) {
                 if (value) {
 
                     keyPairApi.getKeyPair(User.info._id).then(function (resp) {
@@ -38,9 +38,9 @@
             });
 
 
-            $scope.viewPrivateKey = function () {
-                passPhraseModal.show().then(function (data) {
-                    $scope.privateKey = data.privateKey.privateKey;
+            $scope.downloadKey = function () {
+                keyPairApi.downloadPublicKey(User.info._id).then(function(resp) {
+                    DownloadService.download(resp.data, "publicKey.csr");
                 })
             }
 
