@@ -1,10 +1,14 @@
 <div class="container" style="margin-top: 40px">
-    <form name="maHoaForm">
-        <input class="form-control" placeholder="Tìm kiếm người nhận" style="margin-bottom: 20px" ng-model="user_selected" typeahead="user as user.email for user in users | filter:$viewValue | limitTo:10">
-        <textarea class="form-control" placeholder="Nhập nội dung tin cần gửi" style="resize: none; height: 200px" ng-model="message.text" required></textarea>
-        <button class="btn btn-primary" ngf-select style="margin-top: 20px" ng-model="keyFile"> {{keyFile ? keyFile.name : 'Tải private Key Lên'}}</button>
-        <br>
-        <button class="btn btn-success" style="margin-top: 20px" ng-disabled="!(keyFile && maHoaForm.$valid && user_selected._id) || loading" ng-click="sendMessage(keyFile)"> Gửi <i class="fa fa-spinner fa-pulse" ng-show="loading"></i></button>
-    </form>
+    <tabset>
+        <tab heading="Gửi thông điệp tới tài khoản có trong hệ thống">
+            <ma-hoa-trong-he-thong></ma-hoa-trong-he-thong>
+        </tab>
+
+        <tab heading="Gửi thông điệp tới tài khoản ngoài hệ thống">
+            <ma-hoa-ngoai-he-thong></ma-hoa-ngoai-he-thong>
+        </tab>
+    </tabset>
+
+
 
 </div>

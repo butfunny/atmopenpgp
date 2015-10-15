@@ -1,4 +1,5 @@
 var Users = require('../common/dao/users-dao');
+var KeyPair = require('../common/dao/key-pair-dao');
 var crypto = require('crypto');
 
 module.exports = function (router) {
@@ -51,8 +52,18 @@ module.exports = function (router) {
 
 
     router.get("/user/all-user", function (req, res) {
-        Users.find({}, "email name",function (err, users) {
-            res.json(users);
-        })
+        KeyPair.find({}, function (err, users_in_key) {
+            var ids = [];
+            for (var i = 0; i < users_in_key.length; i++) {
+                var user = users_in_key[i];
+                ids.push(user.user_id);
+            }
+
+            Users.find({_id: { $in: ids }}, "email name",function (err, users) {
+                res.json(users);
+            })
+        });
+
+
     })
 };
