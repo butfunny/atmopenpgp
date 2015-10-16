@@ -18,10 +18,10 @@
             ;
         }])
 
-        .controller("giai-ma.ctrl", function($scope, User, userApi, keyPairApi) {
+        .controller("giai-ma.ctrl", function($scope, User, userApi, keyPairApi, $state) {
 
             $scope.User = User;
-            $scope.$watch("User", function(value) {
+            $scope.$watch("::User", function(value) {
                 if (value) {
                     keyPairApi.getKeyPair(User.info._id).then(function (resp) {
                         if (resp.data == "") {

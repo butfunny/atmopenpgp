@@ -19,9 +19,9 @@
             ;
         }])
 
-        .controller("ma-hoa.ctrl", function($scope, keyPairApi, User) {
+        .controller("ma-hoa.ctrl", function($scope, keyPairApi, User, $state) {
             $scope.User = User;
-            $scope.$watch("User", function(value) {
+            $scope.$watch("::User", function(value) {
                 if (value) {
                     keyPairApi.getKeyPair(User.info._id).then(function (resp) {
                         if (resp.data == "") {

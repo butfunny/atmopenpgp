@@ -7,7 +7,9 @@
             <label style="color: red;" ng-if="!formPassPhrase.rePassphrase.$valid">Nhập lại passphrase chưa chính xác!</label>
             <input type="password" class="form-control" placeholder="Passphrase" style="margin-top: 20px" ng-model="passphrase">
             <input type="password" class="form-control" placeholder="Nhập lại" name="rePassphrase" style="margin-top: 20px" ng-model="rePassphrase" check-same="passphrase">
-            <button class="btn btn-primary" style="margin-top: 20px" ng-click="createKey()" ng-disabled="!formPassPhrase.$valid || !rePassphrase"> Xác Nhận</button>
+            <button class="btn btn-primary" style="margin-top: 20px" ng-click="createKey()" ng-disabled="(!formPassPhrase.$valid || !rePassphrase ) || loading"> Xác Nhận
+                <i class="fa fa-spinner fa-pulse" ng-show="loading"></i>
+            </button>
         </form>
 
     </div>

@@ -18,7 +18,10 @@
         }])
 
         .controller("login.ctrl", function($scope, SecurityService, $state, atmAlert) {
-            $scope.user = {};
+            $scope.user = {
+                email: "butfunny63@gmail.com",
+                pass: "123123"
+            };
 
             $scope.login = function () {
                 SecurityService.login($scope.user).then(function() {
