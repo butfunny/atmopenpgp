@@ -39,6 +39,7 @@
         .directive("giaiMaTrongHeThong", function(userApi, giaiMaApi, User, passPhraseModal, Upload, atmAlert) {
             return {
                 restrict: "E",
+                scope: false,
                 templateUrl: "angular/giai-ma/giai-ma-trong-he-thong.html",
                 link: function($scope, elem, attrs) {
 
@@ -66,6 +67,47 @@
 
                     };
 
+
+                }
+            };
+        })
+
+        .directive("giaiMaNgoaiHeThong", function(Upload, atmAlert) {
+            return {
+                restrict: "E",
+                scope: false,
+                templateUrl: "angular/giai-ma/giai-ma-ngoai-he-thong.html",
+                link: function($scope, elem, attrs) {
+                    $scope.validSignOut = null;
+                    $scope.messageOut = {};
+
+                    $scope.checkSign = function () {
+                        Upload.upload({
+                            url: "api/giai-ma/ngoai-he-thong/sign",
+                            fields: $scope.messageOut,
+                            file: $scope.publicKeySign
+                        }).then(function (resp) {
+                            $scope.validSignOut = resp.data.signatures[0].valid;
+                            $scope.textInMesasge = resp.data.text;
+                            if ($scope.validSignOut) {
+                                atmAlert.success("Chữ ký chính xác với public key, với đúng nội dung là: " + $scope.textInMesasge);
+                            } else {
+                                atmAlert.error("Sai chữ ký !! ");
+                            }
+                        })
+                    }
+
+                }
+            };
+        })
+
+
+        .directive("giaiMaPgpMessage", function(Upload, passPhraseModal, atmAlert) {
+            return {
+                restrict: "E",
+                scope: false,
+                templateUrl: "angular/giai-ma/giai-ma-pgp-message.html",
+                link: function($scope, elem, attrs) {
                     $scope.encryptMessage = {};
 
                     $scope.decryptMessage = function () {
@@ -87,7 +129,6 @@
 
                         });
                     }
-
                 }
             };
         })
