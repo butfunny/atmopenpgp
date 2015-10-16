@@ -1,7 +1,7 @@
 <div>
     <h3>Đăng ký</h3>
 </div>
-<div>
+<div style="width: 40%">
     <form name="dangKy">
         <div class="form-group text-center" ng-class="(emailAvailable(register.email) == 1) ? 'has-success' : ''">
             <p class="control-label pull-left" style="color:#ff001b " ng-show="emailAvailable(register.email) == 0">Email đã có người sử dụng</p>
@@ -14,11 +14,11 @@
             <input type="password" class="form-control" placeholder="Mật khẩu" required ng-model="register.pass">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Nhập lại mật khẩu">
+            <input type="password" class="form-control" ng-model="repass" placeholder="Nhập lại mật khẩu" check-same="register.pass" required>
         </div>
         <div class="row">
             <div class="col-xs-7">
-
+                <b><a ui-sref="login">Quay trở lại</a></b>
             </div>
             <div class="col-xs-5">
                 <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="dangky()" ng-disabled="!dangKy.$valid || emailAvailable(register.email) == 0">Đăng ký</button>

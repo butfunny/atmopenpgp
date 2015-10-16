@@ -1,36 +1,28 @@
-<div class="row">
-    <div class="col-md-5">
-        <div>
-            <h3>Mã hóa dữ liệu sử dụng OpenPGP</h3>
-        </div>
-        <div>
-            <form name="loginForm">
-                <div class="form-group text-center has-feedback">
-                    <input type="email" class="form-control" placeholder="Email" ng-model="user.email" required>
+<div class="row" style="width: 40%">
+    <div>
+        <h3>Mã hóa dữ liệu sử dụng OpenPGP</h3>
+    </div>
+    <div>
+        <form name="loginForm">
+            <div class="form-group text-center has-feedback">
+                <input type="email" class="form-control" placeholder="Email" ng-model="user.email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="user.pass" required>
+            </div>
+            <div class="row">
+                <div class="col-xs-7">
+
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" ng-model="user.pass" required>
+                <div class="col-xs-5">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="login()" ng-disabled="!(loginForm.$valid)">Login</button>
                 </div>
-                <div class="row">
-                    <div class="col-xs-7">
+            </div>
+        </form>
 
-                    </div>
-                    <div class="col-xs-5">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="login()">Login</button>
-                    </div>
-                </div>
-            </form>
+        <a ui-sref="register">Đăng ký</a><br>
 
-
-            <a href="#">Quên mật khẩu</a><br>
-            <a href="#">Đăng ký</a><br>
-
-        </div>
     </div>
 
-
-    <div class="col-md-5">
-        <register></register>
-    </div>
 
 </div>

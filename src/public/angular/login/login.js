@@ -17,66 +17,21 @@
             ;
         }])
 
-        .controller("login.ctrl", function($scope, SecurityService, $state) {
-            $scope.user = {
-                email: "shi.iluka94@gmail.com",
-                pass: "123123"
-            };
+        .controller("login.ctrl", function($scope, SecurityService, $state, atmAlert) {
+            $scope.user = {};
 
             $scope.login = function () {
                 SecurityService.login($scope.user).then(function() {
                     $state.go("ma-hoa");
                 }, function() {
-                    console.log("error!!");
+                    atmAlert.error("Sai tài khoản hoặc mật khẩu");
+                    $scope.user.pass = "";
                 })
             };
 
 
         })
 
-
-        .directive("register", function(SecurityService) {
-
-            var emailAvailableCache = {};
-            var emailAvailableCheck = function(email) {
-                if (email == null) {
-                    return 2;
-                }
-
-                var status = emailAvailableCache[email];
-
-                if ( status == null ) {
-                    emailAvailableCache[email] = 2;
-
-                    SecurityService.checkEmailAvailable(email).then(function(resp) {
-                        emailAvailableCache[email] = resp.data.value ? 1 : 0;
-                    });
-
-                    return 2;
-                } else {
-                    return status;
-                }
-
-            };
-
-
-            return {
-                restrict: "E",
-                templateUrl: "angular/login/register.html",
-                link: function($scope, elem, attrs) {
-                    $scope.register = {};
-
-                    $scope.emailAvailable = emailAvailableCheck;
-
-                    $scope.dangky = function () {
-                        SecurityService.register($scope.register).then(function (resp) {
-                            console.log(resp.data);
-                        })
-                    }
-
-                }
-            };
-        })
 
     ;
 

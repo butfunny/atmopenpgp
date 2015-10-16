@@ -11,20 +11,7 @@
             };
         })
 
-        .run(function(SecurityService, User, $rootScope) {
-            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-                if (!User.isLogged) {
-                    if (toState.name == "login") {
-                        ;
-                    } else {
-                        event.preventDefault();
-                    }
-                }
-            });
 
-
-
-        })
 
         .factory("SecurityService", function(User,$http,$state, $q) {
 

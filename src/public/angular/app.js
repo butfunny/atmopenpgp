@@ -8,6 +8,7 @@
         'atm.crate-key',
         'atm.thong-tin-ca-nhan',
         'atm.giai-ma',
+        'atm.register',
 
 
         'atm.lay-out',
