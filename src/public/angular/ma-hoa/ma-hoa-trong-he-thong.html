@@ -3,5 +3,5 @@
     <textarea class="form-control" placeholder="Nhập nội dung tin cần gửi" style="resize: none; height: 200px" ng-model="message.text" required></textarea>
     <button class="btn btn-primary" ngf-select style="margin-top: 20px" ng-model="keyFile"> {{keyFile ? keyFile.name : 'Tải private Key Lên'}}</button>
     <br>
-    <button class="btn btn-success" style="margin-top: 20px" ng-disabled="!(keyFile && maHoaForm.$valid && user_selected._id) || loading" ng-click="sendMessage(keyFile)"> Gửi <i class="fa fa-spinner fa-pulse" ng-show="loading"></i></button>
+    <button class="btn btn-success" style="margin-top: 20px" ng-disabled="!(keyFile && maHoaForm.$valid && user_selected._id) || loading" ng-click="sendMessageInProgram(keyFile)"> Gửi <i class="fa fa-spinner fa-pulse" ng-show="loading"></i></button>
 </form>

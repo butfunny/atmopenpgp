@@ -1,0 +1,21 @@
+
+<div class="row" ng-show="validSign == null" style="margin-top: 20px">
+    <input class="form-control" placeholder="Tìm kiếm người mà bạn cho là gửi thư tới bạn" style="margin-bottom: 20px"
+           ng-model="user_selected"
+           typeahead="user as user.email for user in users | filter:$viewValue | limitTo:10">
+    <textarea class="form-control" placeholder="Nhập nội dung chữ ký" style="resize: none; height: 100px" ng-model="message.text"></textarea>
+    <button class="btn btn-success" style="margin-top: 20px" ng-click="firstStep()"> Kiểm tra chữ ký</button>
+</div>
+
+
+
+<div class="row" ng-show="validSign"  style="margin-top: 20px">
+
+    <p ng-show="pgpMessage">Nội dung thư là: <b>{{pgpMessage}}</b></p>
+
+    <textarea class="form-control" placeholder="Nhập nội dung của thư nhận" style="resize: none; height: 100px; margin-top: 20px" ng-model="encryptMessage.pgpMessage"></textarea>
+    <button class="btn btn-primary" style="margin-top: 20px" ngf-select ng-model="privateKeyUser"> {{privateKeyUser ? privateKeyUser.name : 'Tải lên privateKey của bạn'}}</button>
+    <button class="btn btn-success" style="margin-top: 20px" ng-click="decryptMessage()"> Giải mã thư</button>
+</div>
+
+

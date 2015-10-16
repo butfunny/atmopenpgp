@@ -19,8 +19,17 @@
             ;
         }])
 
-        .controller("ma-hoa.ctrl", function($scope) {
-
+        .controller("ma-hoa.ctrl", function($scope, keyPairApi, User) {
+            $scope.User = User;
+            $scope.$watch("User", function(value) {
+                if (value) {
+                    keyPairApi.getKeyPair(User.info._id).then(function (resp) {
+                        if (resp.data == "") {
+                            $state.go("create-key");
+                        }
+                    });
+                }
+            });
 
         })
 
@@ -78,24 +87,15 @@
                 templateUrl: "angular/ma-hoa/ma-hoa-trong-he-thong.html",
                 link: function($scope, elem, attrs) {
                     $scope.User = User;
-                    $scope.$watch("::User", function(value) {
-                        if (value) {
-                            keyPairApi.getKeyPair(User.info._id).then(function (resp) {
-                                if (resp.data == "") {
-                                    $state.go("create-key");
-                                }
-                            });
 
-                            userApi.getAllUser().then(function (resp) {
-                                $scope.users = resp.data;
-                                Cols.removeBy($scope.users, function (u) {return u._id == User.info._id});
-                            })
-                        }
+                    userApi.getAllUser().then(function (resp) {
+                        $scope.users = resp.data;
+                        Cols.removeBy($scope.users, function (u) {return u._id == User.info._id});
                     });
 
                     $scope.message = {};
 
-                    $scope.sendMessage = function (file) {
+                    $scope.sendMessageInProgram = function (file) {
                         passPhraseModal.show().then(function (passphrase) {
                             $scope.loading = true;
                             $scope.message.passpharese = passphrase;

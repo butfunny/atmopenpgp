@@ -23,11 +23,11 @@ module.exports = function (router, staticConfig, transporter) {
                     privKeys.keys[0].decrypt(req.body.passpharese);
                     fs.unlinkSync("./" + req.file.filename);
 
-                    openpgp.signClearMessage(privKeys.keys[0],pgpMessage).then(function (clearSignedArmor) {
+                    openpgp.signClearMessage(privKeys.keys[0],"Chữ ký được tạo bởi: " + req.session.info.email).then(function (clearSignedArmor) {
                         var mailOptions = {
                             to : req.body.user_revice_email,
                             subject: '',
-                            text: 'This message sended by '+req.session.info.name + '(' + req.session.info.email + ') ' + clearSignedArmor
+                            text: 'This message sended by '+req.session.info.name + '(' + req.session.info.email + ')\n ' + pgpMessage + clearSignedArmor
                         };
 
                         transporter.sendMail(mailOptions, function(error, info){
@@ -82,11 +82,11 @@ module.exports = function (router, staticConfig, transporter) {
                             privKeys.keys[0].decrypt(req.body.passpharese);
                             fs.unlinkSync("./" + req.file.filename);
 
-                            openpgp.signClearMessage(privKeys.keys[0], pgpMessage).then(function (clearSignedArmor) {
+                            openpgp.signClearMessage(privKeys.keys[0], "Chữ ký được tạo bởi: " + req.session.info.email).then(function (clearSignedArmor) {
                                 var mailOptions = {
                                     to: req.body.user_revice_email,
                                     subject: '',
-                                    text: 'This message sended by ' + req.session.info.name + '(' + req.session.info.email + ') ' + clearSignedArmor
+                                    text: 'This message sended by ' + req.session.info.name + '(' + req.session.info.email + ') \n ' + pgpMessage + clearSignedArmor
                                 };
 
                                 transporter.sendMail(mailOptions, function (error, info) {

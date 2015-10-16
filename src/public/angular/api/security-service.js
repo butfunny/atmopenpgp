@@ -36,7 +36,7 @@
                     }else{
                         User.isLogged = true;
                         User.info = data;
-                        $state.go("ma-hoa");
+                        $state.go("giai-ma");
                     }
                 })
 

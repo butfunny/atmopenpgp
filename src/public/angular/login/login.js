@@ -19,7 +19,7 @@
 
         .controller("login.ctrl", function($scope, SecurityService, $state) {
             $scope.user = {
-                email: "butfunny63@gmail.com",
+                email: "shi.iluka94@gmail.com",
                 pass: "123123"
             };
 
