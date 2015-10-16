@@ -1,0 +1,16 @@
+<form name="maHoaForm" style="margin-top: 20px">
+    <input class="form-control" type="email" placeholder="Nhập email người nhận" style="margin-bottom: 20px" ng-model="message.user_revice_email">
+    <button class="btn btn-primary" style="margin-top: 20px; margin-bottom: 20px" ng-model="publicKeyRecive" ngf-select>
+        {{publicKeyRecive ? publicKeyRecive.name : 'Tải public key người nhận lên'}}
+    </button>
+
+    <textarea class="form-control" placeholder="Nhập nội dung thư cần gửi" style="resize: none; height: 200px" ng-model="message.text" required></textarea>
+    <button class="btn btn-primary" ngf-select style="margin-top: 20px" ng-model="privateKey">
+        {{privateKey ? privateKey.name : 'Tải private key của bạn lên'}}
+    </button>
+    <br>
+    <button class="btn btn-success" style="margin-top: 20px"
+            ng-disabled="!(publicKeyRecive && privateKey && maHoaForm.$valid) || loading"
+            ng-click="sendMessage()"> Gửi <i class="fa fa-spinner fa-pulse"
+                                                    ng-show="loading"></i></button>
+</form>

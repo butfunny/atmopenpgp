@@ -25,11 +25,47 @@
         })
 
 
-        .directive("maHoaNgoaiHeThong", function() {
+        .directive("maHoaNgoaiHeThong", function(User, $state, keyPairApi, userApi, maHoaApi, Upload, passPhraseModal, atmAlert) {
             return {
                 restrict: "E",
                 templateUrl: "angular/ma-hoa/ma-hoa-ngoai-he-thong.html",
                 link: function($scope, elem, attrs) {
+
+                    $scope.message = {};
+                    
+                    $scope.sendMessage = function () {
+
+                        passPhraseModal.show().then(function (passphrase) {
+                            $scope.loading = true;
+                            $scope.message.passpharese = passphrase;
+
+
+
+                            Upload.upload({
+                                url: "/api/ma-hoa/save-public-key-recived",
+                                file: $scope.publicKeyRecive
+                            }).then(function (resp) {
+                                $scope.message.filename = resp.data;
+                                Upload.upload({
+                                    url: "/api/ma-hoa/ngoai-he-thong",
+                                    fields: $scope.message,
+                                    file: $scope.privateKey
+                                }).then(function (resp) {
+                                    if (resp.error) {
+                                        atmAlert.error(resp.error);
+                                    } else {
+                                        $scope.loading = false;
+                                        $scope.message.text = "";
+                                        atmAlert.success("Tin nhắn gửi thành công");
+                                    }
+                                })
+                            })
+                        });
+
+
+                    }
+
+
 
                 }
             };
