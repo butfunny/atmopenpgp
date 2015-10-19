@@ -26,7 +26,7 @@ module.exports = function (router) {
     });
 
     router.post("/security/register", function (req, res) {
-
+        req.body.pass = crypto.createHash('md5').update(req.body.pass).digest("hex");
         Users.create(req.body, function (err, user) {
             res.json(user);
         })
