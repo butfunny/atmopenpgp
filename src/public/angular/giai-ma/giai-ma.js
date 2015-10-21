@@ -123,7 +123,7 @@
                                     atmAlert.error("Private Key không chính xác!!!");
                                 }else {
                                     $scope.pgpMessage = resp.data;
-
+                                    $scope.encryptMessage.pgpMessage = "";
                                 }
                             })
 
