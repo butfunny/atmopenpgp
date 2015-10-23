@@ -25,10 +25,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"><b>An Toàn Mạng</b></a>
+            <a class="navbar-brand"><b>An Toàn Mạng </b></a>
+
         </div>
-        <nav class="collapse navbar-collapse bs-navbar-collapse" atm-header>
-            <ul class="nav navbar-nav" ng-show="User.isLogged">
+        <nav class="collapse navbar-collapse bs-navbar-collapse"  atm-header>
+            <ul class="nav navbar-nav" ng-show="User.isLogged && User.active == 'true'">
+
                 <li ng-class="{active: $state.current.name == 'ma-hoa'}">
                     <a ui-sref="ma-hoa" href="">Mã hóa và gửi thông điệp</a>
                 </li>
@@ -38,12 +40,12 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right" ng-show="User.isLogged">
+            <ul class="nav navbar-nav navbar-right" ng-show="User.isLogged ">
 
                 <li>
                     <a href="">Xin chào: <b>{{User.info.name}}</b></a>
                 </li>
-                <li ng-class="{active: $state.current.name == 'thong-tin-ca-nhan'}">
+                <li ng-class="{active: $state.current.name == 'thong-tin-ca-nhan'}" ng-show="User.active == 'true'">
                     <a href="" ui-sref="thong-tin-ca-nhan">Thông tin cá nhân</a>
                 </li>
                 <li ng-click="logout()">
@@ -78,6 +80,7 @@
 
     <!-- inject:js -->
     <script src="/angular/app.js"></script>
+    <script src="/angular/active-account/active-account.js"></script>
     <script src="/angular/api/giai-ma-api.js"></script>
     <script src="/angular/api/key-pair-api.js"></script>
     <script src="/angular/api/ma-hoa-api.js"></script>

@@ -11,18 +11,20 @@ gulp.task('install-db', function () {
         {
             email: "butfunny63@gmail.com",
             name: "Cuong Nguyen",
-            pass: crypto.createHash('md5').update("123123").digest("hex")
+            pass: crypto.createHash('md5').update("123123").digest("hex"),
+            active: "true"
         },
         {
             email: "c@c",
             name: "Cuong Cuong",
-            pass: crypto.createHash('md5').update("123123").digest("hex")
-        },
-        {
-            email: "shi.iluka94@gmail.com",
-            name: "Nguyễn Mạnh Cường",
-            pass: crypto.createHash('md5').update("123123").digest("hex")
+            pass: crypto.createHash('md5').update("123123").digest("hex"),
+            active: "true"
         }
+        //{
+        //    email: "shi.iluka94@gmail.com",
+        //    name: "Nguyễn Mạnh Cường",
+        //    pass: crypto.createHash('md5').update("123123").digest("hex")
+        //}
 
     ];
 

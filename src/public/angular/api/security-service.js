@@ -62,7 +62,22 @@
                     return $http.post("/api/security/check-email-available/"+email);
                 },
                 register: function (user) {
-                    return $http.post("/api/security/register", user);
+                    var defer = $q.defer();
+
+                    $http.post("/api/security/register", user).then(function (resp) {
+                        if(resp.data == ""){
+                            ObjectUtil.clear(User);
+                            defer.reject();
+                        }else{
+                            User.isLogged = true;
+                            User.info = resp.data;
+                            defer.resolve();
+                        }
+                    });
+
+
+                    return defer.promise;
+
                 }
             };
         })

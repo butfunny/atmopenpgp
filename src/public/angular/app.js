@@ -9,6 +9,7 @@
         'atm.thong-tin-ca-nhan',
         'atm.giai-ma',
         'atm.register',
+        'atm.active-account',
 
 
         'atm.lay-out',

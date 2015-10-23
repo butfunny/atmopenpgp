@@ -25,8 +25,11 @@
                 if (value) {
                     keyPairApi.getKeyPair(User.info._id).then(function (resp) {
                         if (resp.data) {
-                            atmAlert.success("Tạo key thành công. Private Key đã tự động download về máy bạn và bạn có thể download publicKey bất kì lúc nào");
                             $state.go("thong-tin-ca-nhan");
+                        } else {
+                            if (User.info.active != "true") {
+                                $state.go("active-account");
+                            }
                         }
                     });
                 }
@@ -37,6 +40,7 @@
                 $scope.loading = true;
                 keyPairApi.createKeyPair($scope.passphrase).then(function (resp) {
                     $scope.loading = false;
+                    atmAlert.success("Tạo key thành công. Private Key đã tự động download về máy bạn và bạn có thể download publicKey bất kì lúc nào");
                     DownloadService.download(resp.data, "privateKey.key");
                     $state.go("thong-tin-ca-nhan");
                 })

@@ -47,7 +47,7 @@
             $scope.dangky = function () {
                 SecurityService.register($scope.register).then(function (resp) {
                     atmAlert.success("Đăng ký thành công");
-                    $state.go("login");
+                    $state.go("active-account");
                 })
             }
         })
