@@ -35,10 +35,16 @@
                 }
             });
 
+            $scope.bits = [512,1024,2048];
+
+            $scope.key = {
+                bit: $scope.bits[0]
+            };
+
             $scope.createKey = function () {
 
                 $scope.loading = true;
-                keyPairApi.createKeyPair($scope.passphrase).then(function (resp) {
+                keyPairApi.createKeyPair($scope.key).then(function (resp) {
                     $scope.loading = false;
                     atmAlert.success("Tạo key thành công. Private Key đã tự động download về máy bạn và bạn có thể download publicKey bất kì lúc nào");
                     DownloadService.download(resp.data, "privateKey.key");

@@ -31,19 +31,21 @@ module.exports = function (router, staticConfig) {
     });
 
 
-    router.post("/key-pair/create/:passpharese", function (req, res) {
+    router.post("/key-pair/create", function (req, res) {
+
 
 
         openpgp.generateKeyPair({
-                 numBits: staticConfig.numBits,
+                 numBits: req.body.bit,
                  userId: req.session.info.name + " <"+ req.session.info.email +">",
-                 passphrase: req.params.passpharese
+                 passphrase: req.body.passphrase
              }
         ).then(function (keyPair) {
 
+
                 var key = {
                     user_id: req.session.info._id,
-                    passphrase: crypto.createHash('md5').update(req.params.passpharese).digest("hex"),
+                    passphrase: crypto.createHash('md5').update(req.body.passphrase).digest("hex"),
                     created: true
                 };
                 KeyPairDao.create(key, function (err, keyCreated) {

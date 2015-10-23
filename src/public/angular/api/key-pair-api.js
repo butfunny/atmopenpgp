@@ -9,8 +9,8 @@
                 getKeyPair: function (user_id) {
                     return $http.get("/api/key-pair/" +user_id);
                 },
-                createKeyPair: function (passphrase) {
-                    return $http.post("/api/key-pair/create/" + passphrase);
+                createKeyPair: function (key) {
+                    return $http.post("/api/key-pair/create",key);
                 },
                 downloadPublicKey: function (user_id) {
                     return $http.get("/api/key-pair/publicKey/" + user_id);
