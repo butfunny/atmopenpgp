@@ -29,7 +29,7 @@
 
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse"  atm-header>
-            <ul class="nav navbar-nav" ng-show="User.isLogged && User.active == 'true'">
+            <ul class="nav navbar-nav" ng-show="User.isLogged && User.info.active == 'true'">
 
                 <li ng-class="{active: $state.current.name == 'ma-hoa'}">
                     <a ui-sref="ma-hoa" href="">Mã hóa và gửi thông điệp</a>
